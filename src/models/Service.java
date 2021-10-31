@@ -1,5 +1,8 @@
+package models;
 
-public class Service {
+public class Service extends Item {
+
+	private int factor = 1242;
 
 	private String name;
 	private int hours, persons;
@@ -15,10 +18,11 @@ public class Service {
 	}
 
 	public int getPrice() {
-		return 1242 * hours * persons;
+		return factor * hours * persons;
 	}
 
-	public void print() {
-		System.out.println(persons + " persons for " + hours + "h of " + getName());
+	@Override
+	public String toString() {
+		return persons + " persons for " + hours + "h of " + getName();
 	}
 }

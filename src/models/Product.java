@@ -1,5 +1,6 @@
+package models;
 
-public class Product {
+public class Product extends Item {
 
 	private String name;
 	private int unitPrice;
