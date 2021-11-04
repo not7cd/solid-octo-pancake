@@ -1,5 +1,9 @@
 package remotecontrol;
 
+import buttons.Button;
+import buttons.ButtonFactory;
+import buttons.SimpleButtonFactory;
+
 /**
  * Base implementation for the remote control.
  */
@@ -8,19 +12,21 @@ public class RemoteControl implements IRemoteControl {
     public final static int NO_OF_ACTION_BUTTONS = 3;
 
     private boolean[] buttonStatus;
+    private int lastNo;
+    private Button[] buttons;
+    private ButtonFactory buttonFactory;
     // TODO: Data structures for the actions
 
     public RemoteControl() {
         buttonStatus = new boolean[NO_OF_ACTION_BUTTONS];
 
-        // TODO: Initialize data structures for the actions
+        buttons = new Button[NO_OF_ACTION_BUTTONS];
+        buttonFactory = new SimpleButtonFactory();
     }
 
-    // TODO: Implement method for configuration of action buttons
-
     @Override
-    public void configureButton(int no, int undoNo, String action) {
-
+    public void configureButton(int no, String action, String oppositeAction) {
+        buttons[no] = buttonFactory.createButton(action, oppositeAction);
     }
 
     /**
@@ -33,15 +39,14 @@ public class RemoteControl implements IRemoteControl {
         // Execute action
         if (buttonStatus[no] == false) {
             System.out.println("Button activated: " + no);
-            // TODO: Execute activation action
-            // TODO: Configure undo (deactivation) action
+            buttons[no].activated().execute();
         } else {
             System.out.println("Button deactivated: " + no);
-            // TODO: Execute deactivation action
-            // TODO: Configure undo (activation) action
+            buttons[no].deactivated().execute();
         }
         // Invert button status
         buttonStatus[no] = !buttonStatus[no];
+        lastNo = no;
     }
 
     /**
@@ -51,6 +56,6 @@ public class RemoteControl implements IRemoteControl {
     public void undoButtonPressed() {
         // Execute undo action
         System.out.println("Undo button pressed");
-        // TODO: Execute undo action
+        actionButtonPressed(lastNo);
     }
 }
