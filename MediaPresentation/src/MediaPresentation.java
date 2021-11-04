@@ -8,6 +8,8 @@ public class MediaPresentation {
     }
 
     public void present() {
+        System.out.println();
         System.out.print(m.render());
+        System.out.println();
     }
 }

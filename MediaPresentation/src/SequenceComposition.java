@@ -13,21 +13,7 @@ public class SequenceComposition extends Composition {
     @Override
     public String render() {
         List<String> rendered = objects.stream().map(IMedia::render).collect(Collectors.toList());
-        int max_w = 0;
-        for (String s :
-                rendered) {
-            int w;
-            try {
-                w = s.substring(0, s.indexOf("\n")).length();
-            } catch (Exception e) {
-                w = s.length();
-            }
-            if (w > max_w) {
-                max_w = w;
-            }
-        }
-
-        String result = String.join("\n" + "-".repeat(max_w) + "\n", rendered);
+        String result = String.join("\n" + "-".repeat(getWidth()) + "\n", rendered);
         return result;
     }
 
@@ -39,5 +25,20 @@ public class SequenceComposition extends Composition {
             System.out.println(" ");
             System.out.println("-----------------");
         }
+    }
+
+    @Override
+    public int getWidth() {
+        return objects.stream().map(IMedia::getWidth).max(Comparator.naturalOrder()).get();
+    }
+
+    @Override
+    public int getHeight() {
+        int h = objects.size();
+        for (IMedia o :
+                objects) {
+            h += o.getHeight();
+        }
+        return h;
     }
 }

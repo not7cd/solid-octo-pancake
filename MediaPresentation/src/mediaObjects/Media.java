@@ -27,4 +27,14 @@ public abstract class Media implements IMedia{
     public String toString() {
         return getIcon() + " " + getContent();
     }
+
+    @Override
+    public int getWidth() {
+        return this.render().length();
+    }
+
+    @Override
+    public int getHeight() {
+        return 1;
+    }
 }
