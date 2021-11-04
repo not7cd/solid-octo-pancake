@@ -1,6 +1,5 @@
+import helpers.Input;
 import models.Item;
-import models.Product;
-import models.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,6 +8,7 @@ import java.util.List;
 public class OrderService {
 
 	private List<Item> items = new ArrayList<>();
+	private ItemFactory factory = new SimpleItemFactory();
 
 	public void menuloop() {
 		int input;
@@ -41,7 +41,7 @@ public class OrderService {
 		int p = Input.readInt();
 		System.out.println("Quantity: ");
 		int s = Input.readInt();
-		items.add(new Product(l, p, s));
+		items.add(factory.createProduct(l, p, s));
 	}
 	
 	private void orderService() {
@@ -51,7 +51,7 @@ public class OrderService {
 		int p = Input.readInt();
 		System.out.println("Hours: ");
 		int s = Input.readInt();
-		items.add(new Service(l, p, s));
+		items.add(factory.createService(l, p, s));
 	}
 	
 	private void finishOrder() {
