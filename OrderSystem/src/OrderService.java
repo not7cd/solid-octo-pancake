@@ -8,7 +8,7 @@ import java.util.List;
 public class OrderService {
 
 	private List<Item> items = new ArrayList<>();
-	private ItemFactory factory = new SimpleItemFactory();
+	private ItemFactory factory;
 
 	public void menuloop() {
 		int input;
@@ -66,5 +66,9 @@ public class OrderService {
 	private String formatPrice(int priceInCent) {
 		return (priceInCent / 100) + "." + (priceInCent % 100 < 10 ? "0" : "")
 			+ priceInCent % 100 + " EUR";
+	}
+
+	public void setFactory(ItemFactory factory) {
+		this.factory = factory;
 	}
 }
