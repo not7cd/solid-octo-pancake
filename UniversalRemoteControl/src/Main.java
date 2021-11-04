@@ -7,12 +7,10 @@ public class Main {
 	public static void main(String[] args) {
 		RemoteControl mediaPlayerRemote = new RemoteControl();
 
-		// TODO: configure the remote controls for the media player remote
 		mediaPlayerRemote.configureButton(0, "on", "off");
 		mediaPlayerRemote.configureButton(1, "play", "pause");
 		mediaPlayerRemote.configureButton(2, "next", "previous");
 
-		// TODO: test the functionality by pressing different buttons similar to below
 		mediaPlayerRemote.actionButtonPressed(0);
 		mediaPlayerRemote.actionButtonPressed(1);
 		mediaPlayerRemote.actionButtonPressed(2);
@@ -22,6 +20,11 @@ public class Main {
 		mediaPlayerRemote.undoButtonPressed();
 
 		mediaPlayerRemote.actionButtonPressed(0);
+
+		mediaPlayerRemote.actionButtonPressed(0);
+		mediaPlayerRemote.undoButtonPressed();
+		mediaPlayerRemote.actionButtonPressed(0);
+
 	}
 }
 

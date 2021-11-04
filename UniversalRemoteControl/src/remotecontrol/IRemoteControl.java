@@ -5,7 +5,6 @@ package remotecontrol;
  */
 public interface IRemoteControl {
 
-    // TODO: Method for configuration of action buttons
     void configureButton(int no, String action, String oppositeAction);
 
     /**

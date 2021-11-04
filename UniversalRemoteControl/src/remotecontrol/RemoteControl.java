@@ -15,7 +15,6 @@ public class RemoteControl implements IRemoteControl {
     private int lastNo;
     private Button[] buttons;
     private ButtonFactory buttonFactory;
-    // TODO: Data structures for the actions
 
     public RemoteControl() {
         buttonStatus = new boolean[NO_OF_ACTION_BUTTONS];
@@ -36,16 +35,16 @@ public class RemoteControl implements IRemoteControl {
      * @param no The number of the button.
      */
     public void actionButtonPressed(int no) {
-        // Execute action
-        if (buttonStatus[no] == false) {
+        if (!buttonStatus[no]) {
             System.out.println("Button activated: " + no);
             buttons[no].activated().execute();
         } else {
             System.out.println("Button deactivated: " + no);
             buttons[no].deactivated().execute();
         }
-        // Invert button status
         buttonStatus[no] = !buttonStatus[no];
+        
+        // NOTE: honestly I don't see any other reason to do something more complicated
         lastNo = no;
     }
 
@@ -54,8 +53,8 @@ public class RemoteControl implements IRemoteControl {
      * It will undo the previous action.
      */
     public void undoButtonPressed() {
-        // Execute undo action
         System.out.println("Undo button pressed");
+        // NOTE: nothing else is configured, we just remember what we pressed previously
         actionButtonPressed(lastNo);
     }
 }
