@@ -1,13 +1,9 @@
 import helpers.Input;
 import models.Item;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class OrderService {
 
-	private List<Item> items = new ArrayList<>();
+	private final ItemRepository itemRepository = new ItemRepository();
 	private ItemFactory factory;
 
 	public void menuloop() {
@@ -23,7 +19,7 @@ public class OrderService {
 			}
 		} while( input != 0 );
 
-		Collections.sort(items);
+		itemRepository.sort();
 		finishOrder() ;
 	}
 	
@@ -41,7 +37,7 @@ public class OrderService {
 		int p = Input.readInt();
 		System.out.println("Quantity: ");
 		int s = Input.readInt();
-		items.add(factory.createProduct(l, p, s));
+		itemRepository.add(factory.createProduct(l, p, s));
 	}
 	
 	private void orderService() {
@@ -51,12 +47,12 @@ public class OrderService {
 		int p = Input.readInt();
 		System.out.println("Hours: ");
 		int s = Input.readInt();
-		items.add(factory.createService(l, p, s));
+		itemRepository.add(factory.createService(l, p, s));
 	}
 	
 	private void finishOrder() {
 		int sum = 0;
-		for (Item i : items) {
+		for (Item i : itemRepository.getAll()) {
 			sum += i.getPrice();
 			System.out.println(i + " = " + formatPrice(i.getPrice()));
 		}
