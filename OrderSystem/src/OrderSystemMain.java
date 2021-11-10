@@ -5,6 +5,7 @@ public class OrderSystemMain {
 		OrderService orderService = new OrderService();
 		ItemFactory f = new SimpleItemFactory();
 		orderService.setFactory(f);
-		orderService.menuloop();
+		UserInterface userInterface = new CLI(orderService);
+		userInterface.menuloop();
 	}
 }
