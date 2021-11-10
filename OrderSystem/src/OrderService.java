@@ -57,6 +57,7 @@ public class OrderService {
 			System.out.println(i + " = " + formatPrice(i.getPrice()));
 		}
 		System.out.println("Sum: "+ formatPrice(sum));
+		itemRepository.clear();
 	}
 
 	private String formatPrice(int priceInCent) {
