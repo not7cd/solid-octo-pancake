@@ -19,14 +19,17 @@ public class OrderService {
 	}
 	
 	public List<Item> finishOrder() {
-		itemRepository.sort();
-		List<Item> all;
-		all = new ArrayList<>(itemRepository.getAll());
+		List<Item> all = new ArrayList<>(getOrder());
 		itemRepository.clear();
 		return all;
 	}
 
 	public void setFactory(ItemFactory factory) {
 		this.factory = factory;
+	}
+
+	public List<Item> getOrder() {
+		itemRepository.sort();
+		return itemRepository.getAll();
 	}
 }

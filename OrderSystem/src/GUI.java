@@ -60,6 +60,7 @@ public class GUI extends UserInterface {
             int i = Integer.parseInt(price.getText());
             int i1 = Integer.parseInt(qty.getText());
             orderService.orderProduct(s,i,i1);
+            displayOrder();
         }
     }
 
@@ -84,8 +85,18 @@ public class GUI extends UserInterface {
             String s = name.getText();
             int i = Integer.parseInt(price.getText());
             int i1 = Integer.parseInt(qty.getText());
+
             orderService.orderService(s,i,i1);
+            displayOrder();
         }
+    }
+
+    private void displayOrder() {
+        DefaultListModel<String> l = new DefaultListModel< >();
+        for (Item item : orderService.getOrder()) {
+            l.addElement(item + " = " + formatPrice(item.getPrice()));
+        }
+        stringJList.setModel(l);
     }
 
     private void displayFinishOrder() {
