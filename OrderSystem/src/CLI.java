@@ -15,6 +15,30 @@ public class CLI extends UserInterface {
         System.out.println("(2) Order service");
     }
 
+    public void orderProduct() {
+        System.out.println("Name: ");
+        String l = Input.readString();
+        System.out.println("Unit price (in cents): ");
+        int p = Input.readInt();
+        System.out.println("Quantity: ");
+        int s = Input.readInt();
+
+        orderService.orderProduct(l,p,s);
+    }
+
+    public void orderService() {
+        System.out.println("Service type: ");
+        String l = Input.readString();
+        System.out.println("Number of persons: ");
+        int p = Input.readInt();
+        System.out.println("Hours: ");
+        int s = Input.readInt();
+
+        orderService.orderService(l,p,s);
+    }
+
+
+
     private void finishOrder(){
         int sum = 0;
         for (Item i : orderService.finishOrder()) {
@@ -32,8 +56,8 @@ public class CLI extends UserInterface {
             input = Input.readInt();
             switch ( input ) {
                 case 0: break ;
-                case 1: orderService.orderProduct(); break ;
-                case 2: orderService.orderService(); break ;
+                case 1: orderProduct(); break ;
+                case 2: orderService(); break ;
                 default: System.out.println("invalid" ); break ;
             }
         } while( input != 0 );
