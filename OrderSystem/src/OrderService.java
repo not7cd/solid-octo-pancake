@@ -1,7 +1,6 @@
-import helpers.Input;
 import models.Item;
+import storage.ItemRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OrderService {
@@ -19,9 +18,7 @@ public class OrderService {
 	}
 	
 	public List<Item> finishOrder() {
-		List<Item> all = new ArrayList<>(getOrder());
-		itemRepository.clear();
-		return all;
+		return itemRepository.release();
 	}
 
 	public void setFactory(ItemFactory factory) {
