@@ -1,7 +1,10 @@
+package enitites;
+
+import enitites.ItemFactory;
 import models.Product;
 import models.Service;
 
-public class SimpleItemFactory implements ItemFactory{
+public class SimpleItemFactory implements ItemFactory {
     @Override
     public Product createProduct(String name, int price, int qty) {
         return new Product(name, price, qty);

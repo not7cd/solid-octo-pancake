@@ -1,8 +1,15 @@
+import enitites.ItemFactory;
+import enitites.Service;
+import enitites.SimpleItemFactory;
+import ui.CLI;
+import ui.GUI;
+import ui.UserInterface;
+
 import java.util.Objects;
 
 public class OrderSystemMain {
 	public static void main(String[] args) {
-		OrderService orderService = new OrderService();
+		Service orderService = new ItemFactory.OrderService();
 		ItemFactory f = new SimpleItemFactory();
 		orderService.setFactory(f);
 		UserInterface userInterface;

@@ -1,9 +1,12 @@
+package ui;
+
+import enitites.Service;
 import helpers.Input;
 import models.Item;
 
 public class CLI extends UserInterface {
 
-    public CLI(OrderService orderService) {
+    public CLI(Service orderService) {
         super(orderService);
     }
 
@@ -27,7 +30,7 @@ public class CLI extends UserInterface {
     }
 
     public void orderService() {
-        System.out.println("Service type: ");
+        System.out.println("enitites.Service type: ");
         String l = Input.readString();
         System.out.println("Number of persons: ");
         int p = Input.readInt();

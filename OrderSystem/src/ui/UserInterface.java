@@ -1,11 +1,15 @@
+package ui;
+
+import enitites.Service;
+
 public abstract class UserInterface {
-    protected UserInterface(OrderService orderService) {
+    protected UserInterface(Service orderService) {
         this.orderService = orderService;
     }
 
     public abstract void menuloop();
 
-    protected OrderService orderService;
+    protected Service orderService;
 
     protected String formatPrice(int priceInCent) {
         return (priceInCent / 100) + "." + (priceInCent % 100 < 10 ? "0" : "")

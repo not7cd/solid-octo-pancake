@@ -1,3 +1,6 @@
+package ui;
+
+import enitites.Service;
 import models.Item;
 
 import javax.swing.*;
@@ -8,12 +11,12 @@ public class GUI extends UserInterface {
     JButton b1;//creating instance of JButton
     JButton b2;
 
-    protected GUI(OrderService orderService) {
+    public GUI(Service orderService) {
         super(orderService);
-        JFrame f=new JFrame("OrderService");//creating instance of JFrame
+        JFrame f=new JFrame("enitites.ItemFactory.OrderService");//creating instance of JFrame
 
         b1 = new JButton("New Product");
-        b2 = new JButton("New Service");
+        b2 = new JButton("New enitites.Service");
         JButton b3 = new JButton("Finish Order");
 
         stringJList = new JList< >();
